@@ -1,24 +1,99 @@
-<section data-ng-controller="CustomersController" data-ng-init="findOne()">
-    <div class="page-header">
-        <h1>Edit Customer</h1>
+<section data-ng-controller="CustomersUpdateController as customerUpCtrl">
+
+
+    <div class="modal-header">
+        <h3 class="modal-title">Edit Customer</h3>
     </div>
-    <div class="col-md-12">
-        <form class="form-horizontal" data-ng-submit="update()" novalidate>
-            <fieldset>
-                <div class="form-group">
-                    <label class="control-label" for="firstname">First Name</label>
-                    <div class="controls">
-                        <input type="text" data-ng-model="customer.firstName" id="firstname" class="form-control"
-                               placeholder="Fisrt Name" required>
+    <div class="modal-body">
+
+            <form>
+                <fieldset>
+                    <div class="row">
+                        <div data-ng-show="error" class="text-center text-danger">
+                            <div class="alert alert-danger" role="alert">
+                                <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                                <strong data-ng-bind="error"></strong>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 text-center">
+                            <i class="glyphicon glyphicon-user cust-profile"
+                               ng-class="{'text-primary': referred, 'text-danger': !referred}"></i>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="control-label" for="firstname">First Name</label>
+                                <div class="controls">
+                                    <input type="text" data-ng-model="customer.firstName" id="firstname" class="form-control" placeholder="First Name">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label" for="surname">Surname</label>
+                                <div class="controls">
+                                    <input type="text" data-ng-model="customer.surname" id="surname" class="form-control" placeholder="Surname">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label" for="suburb">Suburb</label>
+                                <div class="controls">
+                                    <input type="text" data-ng-model="customer.suburb" id="suburb" class="form-control" placeholder="Suburb">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label" for="country">Country</label>
+                                <div class="controls">
+                                    <input type="text" data-ng-model="customer.country" id="country" class="form-control" placeholder="Country">
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    <input type="submit" value="Update" class="btn btn-default">
-                </div>
-				<div data-ng-show="error" class="text-danger">
-					<strong data-ng-bind="error"></strong>
-				</div>
-            </fieldset>
-        </form>
+                    <div class="row">
+                        <div class="col-sm-6 col-sm-push-6">
+                            <div class="form-group">
+                                <label class="control-label" for="phone">Phone</label>
+                                <div class="controls">
+                                    <input type="text" data-ng-model="customer.phone" id="phone" class="form-control" placeholder="Phone">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label" for="email">Email</label>
+                                <div class="controls">
+                                    <input type="text" data-ng-model="customer.email" id="email" class="form-control" placeholder="Email">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-sm-pull-6">
+                            <div class="form-group">
+                                <label class="control-label" for="referred">Referred</label>
+                                <div class="controls">
+                                    <input type="checkbox" data-ng-model="customer.referred" id="referred" class="form-control checkbox-left">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label" for="channel">Channel</label>
+                                <div class="controls">
+                                    <input type="text" data-ng-model="customer.channel" id="channel" class="form-control" placeholder="Channel">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="control-label" for="industry">Industry</label>
+                                <div class="controls">
+                                    <input type="text" data-ng-model="industry" id="industry" class="form-control" placeholder="Industry">
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </fieldset>
+            </form>
     </div>
+    <div class="modal-footer">
+        <button class="btn btn-success btn-lg" ng-click="customerUpCtrl.update(customer); ok()">Update & Close</button>
+        <button class="btn btn-warning btn-lg" ng-click="cancel()">Cancel</button>
+    </div>
+
 </section>
