@@ -9,7 +9,7 @@ angular.module('customers').controller('CustomersController', ['$scope', '$state
 		$scope.create = function() {
 			// Create new Customer object
 			var customer = new Customers ({
-				firstName: this.name,
+				firstName: this.firstName,
 				surname: this.surname,
 				suburb: this.suburb,
 				country: this.country,

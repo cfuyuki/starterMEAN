@@ -29,6 +29,7 @@ var UserSchema = new Schema({
 		type: String,
 		trim: true,
 		default: '',
+		required: 'First Name is required!',
 		validate: [validateLocalStrategyProperty, 'Please fill in your first name']
 	},
 	lastName: {

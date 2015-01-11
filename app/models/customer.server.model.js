@@ -13,43 +13,36 @@ var CustomerSchema = new Schema({
 	firstName: {
 		type: String,
 		default: '',
-		required: '',
 		trim: true
 	},
 	surname: {
 		type: String,
 		default: '',
-		required: '',
 		trim: true
 	},
 	subeurb: {
 		type: String,
 		default: '',
-		required: '',
 		trim: true
 	},
 	country: {
 		type: String,
 		default: '',
-		required: '',
 		trim: true
 	},
 	industry: {
 		type: String,
 		default: '',
-		required: '',
 		trim: true
 	},
 	email: {
 		type: String,
 		default: '',
-		required: '',
 		trim: true
 	},
 	phone: {
 		type: String,
 		default: '',
-		required: '',
 		trim: true
 	},
 	referred: {
@@ -58,7 +51,6 @@ var CustomerSchema = new Schema({
 	channel: {
 		type: String,
 		default: '',
-		required: '',
 		trim: true
 	},
 	created: {
