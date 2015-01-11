@@ -4,13 +4,37 @@
 
 var customersApp = angular.module('customers');
 
-customersApp.controller('CustomersController', ['$scope', '$stateParams', 'Authentication', 'Customers',
-	function($scope, $stateParams, Authentication, Customers) {
+customersApp.controller('CustomersController', ['$scope', '$stateParams', 'Authentication', 'Customers', '$modal', '$log',
+	function($scope, $stateParams, Authentication, Customers, $modal, $log ) {
 
 		this.authentication = Authentication;
 
 		// Find a list of Customers
 		this.customers = Customers.query();
+
+		// Open a modal window to update a single customer record
+		this.modalUpdate = function (size, selectedCustomer) {
+
+			var modalInstance = $modal.open({
+				templateUrl: 'modules/customers/views/edit-customer.client.view.html',
+				controller: function ($scope, $modalInstance, customer) {
+					$scope.customer = customer;
+				},
+				size: size,
+				backdrop: true,
+				resolve: {
+					customer: function () {
+						return selectedCustomer;
+					}
+				}
+			});
+
+			modalInstance.result.then(function (selectedItem) {
+				$scope.selected = selectedItem;
+			}, function () {
+				$log.info('Modal dismissed at: ' + new Date());
+			});
+		};
 	}
 ]);
 customersApp.controller('CustomersCreateController', ['$scope','Customers',

@@ -11,3 +11,6 @@
 .plchld-md {
     height: 60px;
 }
+.modal-backdrop {
+    height: 100%;
+}
