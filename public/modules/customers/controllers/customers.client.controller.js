@@ -23,7 +23,9 @@ customersApp.controller('CustomersController', ['$scope', '$stateParams', 'Authe
 
 
 					$scope.ok = function () {
-						$modalInstance.close($scope.customer);
+						if(!updateCustomerForm.$invalid) {
+							$modalInstance.close($scope.customer);
+						}
 					};
 
 					$scope.cancel = function () {
@@ -31,7 +33,6 @@ customersApp.controller('CustomersController', ['$scope', '$stateParams', 'Authe
 					};
 				},
 				size: size,
-				backdrop: true,
 				resolve: {
 					customer: function () {
 						return selectedCustomer;

@@ -2,11 +2,11 @@
 
 
     <div class="modal-header">
-        <h3 class="modal-title">Edit Customer</h3>
+        <h3 class="modal-title">Update: {{customer.firstName}} {{customer.surname}}</h3>
     </div>
     <div class="modal-body">
 
-            <form>
+            <form name="updateCustomerForm">
                 <fieldset>
                     <div class="row">
                         <div data-ng-show="error" class="text-center text-danger">
@@ -17,19 +17,19 @@
                         </div>
                         <div class="col-sm-6 text-center">
                             <i class="glyphicon glyphicon-user cust-profile"
-                               ng-class="{'text-primary': referred, 'text-danger': !referred}"></i>
+                               ng-class="{'text-primary': customer.referred, 'text-pink': !customer.referred}"></i>
                         </div>
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label class="control-label" for="firstname">First Name</label>
                                 <div class="controls">
-                                    <input type="text" data-ng-model="customer.firstName" id="firstname" class="form-control" placeholder="First Name">
+                                    <input type="text" data-ng-model="customer.firstName" id="firstname" class="form-control" placeholder="First Name" required>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="control-label" for="surname">Surname</label>
                                 <div class="controls">
-                                    <input type="text" data-ng-model="customer.surname" id="surname" class="form-control" placeholder="Surname">
+                                    <input type="text" data-ng-model="customer.surname" id="surname" class="form-control" placeholder="Surname" required>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -81,7 +81,7 @@
                             <div class="form-group">
                                 <label class="control-label" for="industry">Industry</label>
                                 <div class="controls">
-                                    <input type="text" data-ng-model="industry" id="industry" class="form-control" placeholder="Industry">
+                                    <input type="text" data-ng-model="customer.industry" id="industry" class="form-control" placeholder="Industry">
                                 </div>
                             </div>
                         </div>
@@ -92,7 +92,7 @@
             </form>
     </div>
     <div class="modal-footer">
-        <button class="btn btn-success btn-lg" ng-click="customerUpCtrl.update(customer); ok()">Update & Close</button>
+        <button class="btn btn-success btn-lg" ng-click="customerUpCtrl.update(customer);ok()" ng-disabled="updateCustomerForm.$invalid">Update & Close</button>
         <button class="btn btn-warning btn-lg" ng-click="cancel()">Cancel</button>
     </div>
 
