@@ -10,7 +10,7 @@ var mongoose = require('mongoose'),
  * Customer Schema
  */
 var CustomerSchema = new Schema({
-	firstname: {
+	firstName: {
 		type: String,
 		default: '',
 		required: '',
