@@ -20,7 +20,7 @@ var CustomerSchema = new Schema({
 		default: '',
 		trim: true
 	},
-	subeurb: {
+	suburb: {
 		type: String,
 		default: '',
 		trim: true
