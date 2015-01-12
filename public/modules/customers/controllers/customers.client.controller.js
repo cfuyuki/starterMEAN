@@ -23,7 +23,8 @@ customersApp.controller('CustomersController', ['$scope', '$stateParams', 'Authe
 
 
 					$scope.ok = function () {
-						if(!updateCustomerForm.$invalid) {
+
+						if($scope.updateCustomerForm.$valid) { /* Bug */
 							$modalInstance.close($scope.customer);
 						}
 					};
@@ -68,6 +69,17 @@ customersApp.controller('CustomersUpdateController', ['$scope','Customers',
 	}
 ]);
 
+
+customersApp.directive('customerList',[function(){
+		return {
+			restrict: 'E',
+			transclude: true,
+			templateUrl: 'modules/customers/views/customer-list-template.html',
+			link: function(scope, element, attrs){
+
+			}
+		};
+	}]);
 
 		//// Create new Customer
 		//$scope.create = function() {
