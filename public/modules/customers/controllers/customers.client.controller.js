@@ -132,6 +132,14 @@ customersApp.controller('CustomersCreateController', ['$scope','Customers', 'Not
 ]);
 customersApp.controller('CustomersUpdateController', ['$scope','Customers',
 	function($scope, Customers) {
+
+		$scope.channelOptions = [
+			{id: 1, item:'Facebook'},
+			{id: 2, item:'Twitter'},
+			{id: 3, item:'Email'}
+		];
+
+
 		// Update existing Customer
 		this.update = function(updatedCustomer) {
 			var customer = updatedCustomer;
