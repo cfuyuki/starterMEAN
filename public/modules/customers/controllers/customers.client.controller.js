@@ -5,12 +5,43 @@
 var customersApp = angular.module('customers');
 
 customersApp.controller('CustomersController', ['$scope', '$stateParams', 'Authentication', 'Customers', '$modal', '$log',
+
 	function($scope, $stateParams, Authentication, Customers, $modal, $log ) {
 
 		this.authentication = Authentication;
 
 		// Find a list of Customers
 		this.customers = Customers.query();
+
+
+		// Open a modal window to create a single customer record
+		this.modalCreate = function (size) {
+
+			var modalInstance = $modal.open({
+				templateUrl: 'modules/customers/views/create-customer.client.view.html',
+				controller: function ($scope, $modalInstance) {
+
+					$scope.ok = function () {
+
+						if(this.createCustomerForm.$valid) {
+							$modalInstance.close();
+						}
+					};
+
+					$scope.cancel = function () {
+						$modalInstance.dismiss('cancel');
+					};
+				},
+				size: size
+			});
+
+			modalInstance.result.then(function (selectedItem) {
+			}, function () {
+				$log.info('Modal dismissed at: ' + new Date());
+			});
+		};
+
+
 
 		// Open a modal window to update a single customer record
 		this.modalUpdate = function (size, selectedCustomer) {
@@ -24,7 +55,7 @@ customersApp.controller('CustomersController', ['$scope', '$stateParams', 'Authe
 
 					$scope.ok = function () {
 
-						if($scope.updateCustomerForm.$valid) { /* Bug */
+						if(this.updateCustomerForm.$valid) {
 							$modalInstance.close($scope.customer);
 						}
 					};
@@ -47,10 +78,66 @@ customersApp.controller('CustomersController', ['$scope', '$stateParams', 'Authe
 				$log.info('Modal dismissed at: ' + new Date());
 			});
 		};
+
+
+
+		// Remove existing Customer
+		this.remove = function(customer) {
+			if ( customer ) {
+				customer.$remove();
+
+				for (var i in this.customers) {
+					if (this.customers [i] === customer) {
+						this.customers.splice(i, 1);
+					}
+				}
+			} else {
+				this.customer.$remove(function() {
+				});
+			}
+		};
+
+
+
 	}
 ]);
 customersApp.controller('CustomersCreateController', ['$scope','Customers',
-	function($scope,Customers) {
+	function($scope, Customers) {
+
+		// Create new Customer
+		this.create = function() {
+			// Create new Customer object
+			var customer = new Customers ({
+				firstName: this.firstName,
+				surname: this.surname,
+				suburb: this.suburb,
+				country: this.country,
+				industry: this.industry,
+				email: this.email,
+				phone: this.phone,
+				referred: this.referred,
+				channel: this.channel
+			});
+
+			// Redirect after save
+			customer.$save(function(response) {
+
+				// Clear form fields
+				$scope.firstName = '';
+				$scope.surname = '';
+				$scope.surname = '';
+				$scope.suburb = '';
+				$scope.country = '';
+				$scope.industry = '';
+				$scope.email = '';
+				$scope.phone = '';
+				$scope.referred = '';
+				$scope.channel = '';
+
+			}, function(errorResponse) {
+				$scope.error = errorResponse.data.message;
+			});
+		};
 
 	}
 ]);
@@ -80,68 +167,3 @@ customersApp.directive('customerList',[function(){
 			}
 		};
 	}]);
-
-		//// Create new Customer
-		//$scope.create = function() {
-		//	// Create new Customer object
-		//	var customer = new Customers ({
-		//		firstName: this.firstName,
-		//		surname: this.surname,
-		//		suburb: this.suburb,
-		//		country: this.country,
-		//		industry: this.industry,
-		//		email: this.email,
-		//		phone: this.phone,
-		//		referred: this.referred,
-		//		channel: this.channel
-		//	});
-        //
-		//	// Redirect after save
-		//	customer.$save(function(response) {
-		//		$location.path('customers/' + response._id);
-        //
-		//		// Clear form fields
-		//		$scope.firstName = '';
-		//		$scope.surname = '';
-		//		$scope.surname = '';
-		//		$scope.suburb = '';
-		//		$scope.country = '';
-		//		$scope.industry = '';
-		//		$scope.email = '';
-		//		$scope.phone = '';
-		//		$scope.referred = '';
-		//		$scope.channel = '';
-        //
-		//	}, function(errorResponse) {
-		//		$scope.error = errorResponse.data.message;
-		//	});
-		//};
-        //
-		//// Remove existing Customer
-		//$scope.remove = function(customer) {
-		//	if ( customer ) {
-		//		customer.$remove();
-        //
-		//		for (var i in $scope.customers) {
-		//			if ($scope.customers [i] === customer) {
-		//				$scope.customers.splice(i, 1);
-		//			}
-		//		}
-		//	} else {
-		//		$scope.customer.$remove(function() {
-		//			$location.path('customers');
-		//		});
-		//	}
-		//};
-        //
-
-        //
-        //
-        //
-		//// Find existing Customer
-		//$scope.findOne = function() {
-		//	$scope.customer = Customers.get({
-		//		customerId: $stateParams.customerId
-		//	});
-		//};
-
