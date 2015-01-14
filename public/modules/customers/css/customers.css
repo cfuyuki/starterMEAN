@@ -21,6 +21,6 @@
     padding-bottom: 15px;
     padding-top: 15px;
 }
-inpu[type="radio"], input[type="checkbox"]{
-    margin: 0px 0 0 !important;
+input[type="radio"], input[type="checkbox"]{
+    margin: 0 0 0 !important;
 }
