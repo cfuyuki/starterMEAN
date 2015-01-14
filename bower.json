@@ -2,7 +2,7 @@
 	"name": "starter-mean",
 	"version": "0.0.1",
 	"description": "Full-Stack JavaScript with MongoDB, Express, AngularJS, and Node.js",
-	"dependencies": { // main clientr-side modules used by app (public/lib)
+	"dependencies": {
 		"bootstrap": "~3",
 		"angular": "~1.2",
 		"angular-resource": "~1.2",
