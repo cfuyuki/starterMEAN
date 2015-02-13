@@ -2,6 +2,7 @@ This is a built example of a simple MeanJS CRUD Application introduced by MEAN S
 All credit goes to Shristi from Bossable.com.
 
 
+
 [![MEAN.JS Logo](http://meanjs.org/img/logo-small.png)](http://meanjs.org/)
 
 [![Build Status](https://travis-ci.org/meanjs/mean.svg?branch=master)](https://travis-ci.org/meanjs/mean)
