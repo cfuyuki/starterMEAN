@@ -22,12 +22,10 @@ customersApp.controller('CustomersController', ['$scope', '$stateParams', 'Authe
 				controller: function ($scope, $modalInstance) {
 
 					$scope.ok = function () {
-
 						if(this.createCustomerForm.$valid) {
 							$modalInstance.close();
 						}
 					};
-
 					$scope.cancel = function () {
 						$modalInstance.dismiss('cancel');
 					};
